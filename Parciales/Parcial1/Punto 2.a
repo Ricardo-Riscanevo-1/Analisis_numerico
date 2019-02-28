@@ -1,0 +1,30 @@
+#importada libreria sympy
+from math import tan
+from sympy import *
+from sympy import Symbol
+
+t = symbols('t')
+
+funcion1 = tan(pi * t)
+funcion2 = cos(pi * t)
+
+funcion3 = funcion1 - funcion2
+
+x = 1.4
+print(funcion3.evalf(subs={t: x}))
+error = 1
+tol = 0.00001
+
+
+while error > tol:
+        x2 = funcion3.evalf(subs={t: x})
+
+
+        xn = (x - 1) - ((( funcion3.evalf(subs={t: x-1}) ) * ((x - 1) - (x - 2))) / ( funcion3.evalf(subs={t: x-1}) - funcion3.evalf(subs={t: x-2}) ))
+
+        x = x2
+        x2 = xn
+        error = abs(funcion3.evalf(subs={t: xn}))
+        print ("X: ",xn, "\tError: ", error)
+
+
